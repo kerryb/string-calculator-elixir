@@ -29,5 +29,9 @@ defmodule StringCalculatorTest do
         StringCalculator.add("666,-42,69,-1")
       end
     end
+
+    test "ignores numbers over 1000" do
+      assert StringCalculator.add("1,1000,2,1001") == 1003
+    end
   end
 end

@@ -11,6 +11,7 @@ defmodule StringCalculator do
     |> String.split(split_pattern)
     |> Enum.map(&String.to_integer/1)
     |> validate()
+    |> Enum.reject(&(&1 > 1000))
     |> Enum.sum()
   end
 
