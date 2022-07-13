@@ -6,7 +6,6 @@ defmodule StringCalculator do
 
   def add(input), do: split_and_sum(input, ~r/[,\n]/)
 
-  defp split_and_sum(input, split_pattern) do
-    input |> String.split(split_pattern) |> Enum.map(&String.to_integer/1) |> Enum.sum()
-  end
+  defp split_and_sum(input, split_pattern),
+    do: input |> String.split(split_pattern) |> Enum.map(&String.to_integer/1) |> Enum.sum()
 end
