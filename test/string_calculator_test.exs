@@ -9,5 +9,9 @@ defmodule StringCalculatorTest do
     test "returns the number if there's only one" do
       assert StringCalculator.add("42") == 42
     end
+
+    test "returns the sum of two comma-separated numbers" do
+      assert StringCalculator.add("42,27") == 69
+    end
   end
 end
