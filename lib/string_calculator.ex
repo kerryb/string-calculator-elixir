@@ -1,5 +1,7 @@
 defmodule StringCalculator do
-  def add(_input) do
-    0
+  def add(""), do: 0
+
+  def add(input) do
+    String.to_integer(input)
   end
 end
