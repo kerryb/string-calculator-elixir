@@ -6,14 +6,19 @@ defmodule StringCalculator do
 
   def add("//" <> delimiter_and_input) do
     with [preamble, input] <- String.split(delimiter_and_input, "\n"),
-         delimiters <-
-           ~r/\[([^\]]+)\]/ |> Regex.scan(preamble, capture: :all_but_first) |> List.flatten(),
-         split_pattern <- delimiters |> Enum.map_join("|", &Regex.escape/1) |> Regex.compile!() do
+         delimiters <- extract_delimiters(preamble),
+         split_pattern <- compile_split_pattern(delimiters) do
       split_and_sum(input, split_pattern)
     end
   end
 
   def add(input), do: split_and_sum(input, ~r/[,\n]/)
+
+  defp extract_delimiters(preamble),
+    do: ~r/\[([^\]]+)\]/ |> Regex.scan(preamble, capture: :all_but_first) |> List.flatten()
+
+  defp compile_split_pattern(delimiters),
+    do: delimiters |> Enum.map_join("|", &Regex.escape/1) |> Regex.compile!()
 
   defp split_and_sum(input, split_pattern) do
     input
