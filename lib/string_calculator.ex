@@ -17,7 +17,7 @@ defmodule StringCalculator do
   defp validate(numbers) do
     case Enum.filter(numbers, &(&1 < 0)) do
       [] -> numbers
-      [number] -> raise "Negatives not allowed: #{number}"
+      numbers -> raise "Negatives not allowed: #{Enum.join(numbers, ", ")}"
     end
   end
 end

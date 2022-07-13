@@ -23,5 +23,11 @@ defmodule StringCalculatorTest do
         StringCalculator.add("666,-42,69")
       end
     end
+
+    test "includes all invalid numbers in the error message" do
+      assert_raise RuntimeError, "Negatives not allowed: -42, -1", fn ->
+        StringCalculator.add("666,-42,69,-1")
+      end
+    end
   end
 end
