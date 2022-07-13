@@ -8,7 +8,7 @@ defmodule StringCalculator do
     with [preamble, input] <- String.split(delimiter_and_input, "\n"),
          delimiters <-
            ~r/\[([^\]]+)\]/ |> Regex.scan(preamble, capture: :all_but_first) |> List.flatten(),
-         split_pattern <- ~r/#{Enum.map_join(delimiters, "|", &Regex.escape/1)}/ do
+         split_pattern <- delimiters |> Enum.map_join("|", &Regex.escape/1) |> Regex.compile!() do
       split_and_sum(input, split_pattern)
     end
   end
