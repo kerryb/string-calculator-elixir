@@ -37,5 +37,9 @@ defmodule StringCalculatorTest do
     test "allows arbitrary length delimiters to be specified" do
       assert StringCalculator.add("//[***]\n1***2***3") == 6
     end
+
+    test "allows multiple arbitrary length delimiters to be specified" do
+      assert StringCalculator.add("//[***][%]\n1***2%3") == 6
+    end
   end
 end
