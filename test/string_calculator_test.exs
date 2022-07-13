@@ -13,5 +13,9 @@ defmodule StringCalculatorTest do
     test "returns the sum of two comma-separated numbers" do
       assert StringCalculator.add("42,27") == 69
     end
+
+    test "returns the sum of many comma-separated numbers" do
+      assert StringCalculator.add("1,2,3,4,5") == 15
+    end
   end
 end
