@@ -17,5 +17,11 @@ defmodule StringCalculatorTest do
     test "allows a custom delimiter to be specified" do
       assert StringCalculator.add("//;\n1;2") == 3
     end
+
+    test "raises an error if given a negative number" do
+      assert_raise RuntimeError, "Negatives not allowed: -42", fn ->
+        StringCalculator.add("666,-42,69")
+      end
+    end
   end
 end
