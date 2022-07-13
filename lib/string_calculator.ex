@@ -1,8 +1,12 @@
 defmodule StringCalculator do
   def add(""), do: 0
 
-  def add("//" <> <<delimiter::bytes-size(1)>> <> "\n" <> input),
-    do: split_and_sum(input, delimiter)
+  def add("//" <> delimiter_and_input) do
+    [delimiter, input] =
+      Regex.run(~r/\[?(.+?)\]?\n(.*)/, delimiter_and_input, capture: :all_but_first)
+
+    split_and_sum(input, delimiter)
+  end
 
   def add(input), do: split_and_sum(input, ~r/[,\n]/)
 
